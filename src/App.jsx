@@ -5,6 +5,7 @@ import "./assets/css/styles.css"; // Import global styles
 const App = () => {
   return (
     <div className="app-container">
+
       <ImageWithAreas />
     </div>
   );
