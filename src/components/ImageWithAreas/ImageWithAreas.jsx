@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./Modal";
-import ClickableArea from "./ClickableArea";
-import Tooltip from "./Tooltip";
-import { fetchWikipediaData } from "../utils/fetchWikipediaData";
+import Modal from "../Modal/Modal";
+import ClickableArea from "../ClickableArea/ClickableArea";
+import Pixeltool from "../../utils/Pixeltool";
+import { useWikipediaData } from "../../hooks/useWikipediaData";
+import "./ImageWithAreas.css";
 
-import shogunImage from "../assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
+import shogunImage from "../../assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
 
 const originalImageDimensions = {
     width: 888,
@@ -42,11 +43,18 @@ const clickableAreas = {
     },
 };
 
+const swordTopics = [
+    "Katana", "Tachi", "Chokuto", "Wakizashi",
+    "Nodachi", "Kodachi", "Tanto", "Uchigatana",
+    "Ninjato", "Bokken"
+];
+
 const ImageWithAreas = () => {
     const [modalData, setModalData] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+    const [swordData, setSwordData] = useState(null);
 
     const updateImageSize = () => {
         const image = document.getElementById("main-image");
@@ -70,31 +78,30 @@ const ImageWithAreas = () => {
         setTooltipPosition({ x: e.pageX, y: e.pageY });
     };
 
-    // Function to open the modal for both swords and other clickable areas
-    const openModal = async (areaKey) => {
-        let data;
-
-        if (areaKey === "swordsBelt") {
-            // Fetch Wikipedia data related to samurai swords
-            const swordTopics = ["Katana", "Tachi", "Chokuto", "Wakizashi", "Nodachi", "Kodachi", "Tanto", "Uchigatana", "Ninjato", "Bokken"];
+    // Fetch Wikipedia data for sword topics
+    useEffect(() => {
+        const fetchSwordData = async () => {
             let combinedData = [];
-
-            // Fetch Wikipedia data for all sword topics
             for (const topic of swordTopics) {
-                const swordData = await fetchWikipediaData(topic);
+                const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${topic}`);
+                const swordData = await response.json();
                 combinedData.push({
-                    title: topic,
+                    title: swordData.title,
                     extract: swordData.extract,
                 });
             }
+            setSwordData(combinedData);
+        };
 
-            data = combinedData; // Set sword data for the modal
-        } else {
-            // Fetch Wikipedia data for other areas (e.g., shogun, geisha, cherry_blossom)
-            data = await fetchWikipediaData(areaKey);
+        if (modalData === "swordsBelt") {
+            fetchSwordData();
         }
+    }, [modalData]);
 
-        setModalData(data);
+    const { data: areaData } = useWikipediaData(modalData !== "swordsBelt" ? modalData : null);
+
+    const openModal = (areaKey) => {
+        setModalData(areaKey);
         setModalOpen(true);
     };
 
@@ -116,23 +123,24 @@ const ImageWithAreas = () => {
                     onClick={() => openModal(areaKey)}
                 />
             ))}
-            {modalOpen && modalData && (
+            {modalOpen && (
                 <Modal
-                    title={Array.isArray(modalData) ? "Samurai Swords" : modalData.title}
-                    content={Array.isArray(modalData)
-                        ? modalData.map((sword) => (
-                            <div key={sword.title}>
-                                <h3>{sword.title}</h3>
-                                <p>{sword.extract}</p>
-                            </div>
-                        ))
-                        : modalData.extract}
+                    title={modalData === "swordsBelt" ? "Samurai Swords" : areaData?.title}
+                    content={
+                        modalData === "swordsBelt"
+                            ? swordData?.map((sword) => (
+                                <div key={sword.title}>
+                                    <h3>{sword.title}</h3>
+                                    <p>{sword.extract}</p>
+                                </div>
+                            ))
+                            : areaData?.extract
+                    }
                     onClose={closeModal}
                 />
             )}
-            {/* Conditionally render Tooltip for development */}
             {process.env.NODE_ENV === "development" && (
-                <Tooltip x={tooltipPosition.x} y={tooltipPosition.y} />
+                <Pixeltool x={tooltipPosition.x} y={tooltipPosition.y} />
             )}
         </div>
     );

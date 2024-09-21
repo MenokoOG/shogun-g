@@ -1,11 +1,11 @@
 // Tooltip.js
 import React from "react";
-import "./Tooltip.css";
+import "./Pixeltool.css";
 
 const Tooltip = ({ x, y }) => {
     return (
         <div
-            className="tooltip"
+            className="pixeltool"
             style={{
                 left: `${x}px`,
                 top: `${y}px`,
