@@ -1,12 +1,13 @@
 /* Clickable area styles */
 .clickable-area {
   position: absolute;
-  border: 2px solid rgba(255, 0, 0, 0.5);
-  background-color: rgba(255, 0, 0, 0.2);
+  border: 2px solid rgba(255, 0, 0, 0.384);
+  background-color: rgba(255, 0, 0, 0.034);
   cursor: pointer;
 }
 
 .clickable-area:hover {
-  background-color: rgba(255, 0, 0, 0.4);
-  border-color: rgba(255, 0, 0, 0.8);
+  background-color: rgba(44, 43, 43, 0.267);
+
+  border: 2px solid rgba(241, 236, 236, 0.877);
 }
