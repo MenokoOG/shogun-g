@@ -3,37 +3,37 @@ import ClickableArea from "./ClickableArea";
 import shogunGeishaImage from "../../src/assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
 
 const originalImageDimensions = {
-    width: 888,
-    height: 507.43,
+    width: 1792,
+    height: 1024,
 };
 
 const clickableAreas = {
     shogun: {
-        x1: 355 / originalImageDimensions.width,
-        y1: 260 / originalImageDimensions.height,
-        x2: 430 / originalImageDimensions.width,
-        y2: 350 / originalImageDimensions.height,
+        x1: 750 / originalImageDimensions.width,
+        y1: 580 / originalImageDimensions.height,
+        x2: 920 / originalImageDimensions.width,
+        y2: 708 / originalImageDimensions.height,
         label: "Shogun",
     },
     geisha: {
-        x1: 503 / originalImageDimensions.width,
-        y1: 350 / originalImageDimensions.height,
-        x2: 573 / originalImageDimensions.width,
-        y2: 408 / originalImageDimensions.height,
+        x1: 1070 / originalImageDimensions.width,
+        y1: 750 / originalImageDimensions.height,
+        x2: 1200 / originalImageDimensions.width,
+        y2: 830 / originalImageDimensions.height,
         label: "Geisha",
     },
     cherry_blossom: {
-        x1: 27 / originalImageDimensions.width,
-        y1: 112 / originalImageDimensions.height,
-        x2: 152 / originalImageDimensions.width,
-        y2: 250 / originalImageDimensions.height,
+        x1: 39 / originalImageDimensions.width,
+        y1: 193 / originalImageDimensions.height,
+        x2: 287 / originalImageDimensions.width,
+        y2: 308 / originalImageDimensions.height,
         label: "Cherry Blossom",
     },
     swordsBelt: {
-        x1: 268 / originalImageDimensions.width,
-        y1: 308 / originalImageDimensions.height,
-        x2: 389 / originalImageDimensions.width,
-        y2: 452 / originalImageDimensions.height,
+        x1: 640 / originalImageDimensions.width,
+        y1: 680 / originalImageDimensions.height,
+        x2: 780 / originalImageDimensions.width,
+        y2: 760 / originalImageDimensions.height,
         label: "swordsBelt",
     },
 };
