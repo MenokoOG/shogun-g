@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ClickableArea from "../ClickableArea/ClickableArea";
-import "../../page/ImageWithAreas.css";
+import "../../pages/ImageWithAreas.css";
 import shogunGeishaImage from "../../assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
 
 const originalImageDimensions = {
