@@ -1,10 +1,8 @@
 import React from "react";
-import "./ClickableArea.css";
 
 const ClickableArea = ({ area, imageSize, onClick }) => {
     const { x1, y1, x2, y2 } = area;
 
-    // Calculate the clickable area position and size based on the current image size
     const areaStyle = {
         left: `${x1 * imageSize.width}px`,
         top: `${y1 * imageSize.height}px`,
@@ -12,7 +10,13 @@ const ClickableArea = ({ area, imageSize, onClick }) => {
         height: `${(y2 - y1) * imageSize.height}px`,
     };
 
-    return <div className="clickable-area" style={areaStyle} onClick={onClick}></div>;
+    return (
+        <div
+            className="absolute border-2 border-red-500/50 bg-red-500/10 cursor-pointer hover:bg-gray-700/50 hover:border-gray-100/90"
+            style={areaStyle}
+            onClick={onClick}
+        ></div>
+    );
 };
 
 export default ClickableArea;

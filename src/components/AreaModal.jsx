@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../Modal/Modal";
+import Modal from "./Modal";
 
 const AreaModal = ({ modalData, swordData, areaData, onClose }) => {
     return (

@@ -4,7 +4,7 @@ import ImageWithAreas from "./pages/ImageWithAreas";
 
 const App = () => {
   return (
-    <div className="app-container">
+    <div className="flex justify-center mt-5">
 
       <ImageWithAreas />
     </div>

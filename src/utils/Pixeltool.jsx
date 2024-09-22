@@ -1,16 +1,8 @@
-
 import React from "react";
-import "./Pixeltool.css";
 
 const Pixeltool = ({ x, y }) => {
     return (
-        <div
-            className="pixeltool"
-            style={{
-                left: `${x}px`,
-                top: `${y}px`,
-            }}
-        >
+        <div className="absolute bg-gray-800 text-white text-sm py-1 px-2 rounded-md pointer-events-none transform -translate-x-1/2 -translate-y-full z-50">
             X: {x}, Y: {y}
         </div>
     );

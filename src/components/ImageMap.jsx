@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import ClickableArea from "../ClickableArea/ClickableArea";
-import "../../pages/ImageWithAreas.css";
-import shogunGeishaImage from "../../assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
+import React, { useEffect } from "react";
+import ClickableArea from "./ClickableArea";
+import shogunGeishaImage from "../../src/assets/images/a Japanese shogun and a geisha standing in front of a red cherry blossom forest..png";
 
 const originalImageDimensions = {
     width: 888,
@@ -59,12 +58,12 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
     }, [setImageSize]);
 
     return (
-        <div className="image-container" >
+        <div className="relative mx-auto max-w-full">
             <img
                 id="main-image"
                 src={shogunGeishaImage}
                 alt="Shogun and Geisha Image"
-                className="main-image"
+                className="block max-w-full h-auto"
             />
             {Object.keys(clickableAreas).map((areaKey) => (
                 <ClickableArea
