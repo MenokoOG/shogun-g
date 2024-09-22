@@ -1,5 +1,5 @@
 import React from "react";
-import ImageWithAreas from "./page/ImageWithAreas/ImageWithAreas";
+import ImageWithAreas from "./page/ImageWithAreas";
 
 
 const App = () => {
