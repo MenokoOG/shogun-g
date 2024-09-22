@@ -2,7 +2,7 @@
 import React from "react";
 import "./Pixeltool.css";
 
-const Tooltip = ({ x, y }) => {
+const Pixeltool = ({ x, y }) => {
     return (
         <div
             className="pixeltool"
@@ -16,4 +16,4 @@ const Tooltip = ({ x, y }) => {
     );
 };
 
-export default Tooltip;
+export default Pixeltool;

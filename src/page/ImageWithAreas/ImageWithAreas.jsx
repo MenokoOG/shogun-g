@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../Modal/Modal";
-import ClickableArea from "../ClickableArea/ClickableArea";
+import Modal from "../../components/Modal/Modal";
+import ClickableArea from "../../components/ClickableArea/ClickableArea";
 import Pixeltool from "../../utils/Pixeltool";
 import { useWikipediaData } from "../../hooks/useWikipediaData";
 import "./ImageWithAreas.css";

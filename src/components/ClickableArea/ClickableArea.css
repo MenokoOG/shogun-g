@@ -1,4 +1,4 @@
-/* Clickable area styles */
+/* Clickable area styles: here is also where color is used in  development, comment out colors for production. */
 .clickable-area {
   position: absolute;
   border: 2px solid rgba(255, 0, 0, 0.384);
