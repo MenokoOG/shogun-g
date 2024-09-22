@@ -3,13 +3,13 @@ import ImageMap from "../components/ImageMap";
 import AreaModal from "../components/AreaModal";
 import { useWikipediaData } from "../hooks/useWikipediaData"; // hook for regular topics
 import { useSwordData } from "../hooks/useSwordData"; // hook for sword topics
-import Pixeltool from "../utils/Pixeltool";
+import Pixeltool from "../utils/Pixeltool"; // dev component for displaying mouse coordinates
 
 const ImageWithAreas = () => {
     const [modalData, setModalData] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-    const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 });
+    const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 }); // for dev
 
     const { data: areaData } = useWikipediaData(modalData !== "swordsBelt" ? modalData : null);
     const { swordData } = useSwordData(modalData === "swordsBelt");
@@ -20,7 +20,7 @@ const ImageWithAreas = () => {
     };
 
     const closeModal = () => setModalOpen(false);
-
+    // for dev
     const handleMouseMove = (e) => {
         setToolPosition({ x: e.pageX, y: e.pageY });
     };
@@ -35,7 +35,7 @@ const ImageWithAreas = () => {
                     areaData={areaData}
                     onClose={closeModal}
                 />
-            )}
+            )} {/* for dev */}
             {process.env.NODE_ENV === "development" && (
                 <Pixeltool x={toolPosition.x} y={toolPosition.y} />
             )}
