@@ -1,13 +1,18 @@
-import React from "react";
-import ImageWithAreas from "./pages/ImageWithAreas";
-
+import React from 'react';
+import Banner from './components/Banner';
+import Footer from './components/Footer';
+import PageFrame from './components/PageFrame';
+import ImageWithAreas from './pages/ImageWithAreas';
 
 const App = () => {
   return (
-    <div className="flex justify-center mt-5">
-
-      <ImageWithAreas />
-    </div>
+    <PageFrame>
+      <Banner />
+      <main className="flex-grow">
+        <ImageWithAreas />
+      </main>
+      <Footer />
+    </PageFrame>
   );
 };
 

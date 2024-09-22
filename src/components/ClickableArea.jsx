@@ -12,7 +12,9 @@ const ClickableArea = ({ area, imageSize, onClick }) => {
 
     return (
         <div
-            className="absolute border-2 border-red-500/50 bg-red-500/10 cursor-pointer hover:bg-gray-700/50 hover:border-gray-100/90"
+            className="absolute border-2 border-transparent
+             {/* border-red-500/50 bg-red-500/10 */}
+             cursor-pointer hover:bg-gray-700/50 hover:border-gray-100/90"
             style={areaStyle}
             onClick={onClick}
         ></div>
