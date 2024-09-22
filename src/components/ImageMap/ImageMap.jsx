@@ -59,7 +59,7 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
     }, [setImageSize]);
 
     return (
-        <div className="image-container">
+        <div className="image-container" >
             <img
                 id="main-image"
                 src={shogunGeishaImage}

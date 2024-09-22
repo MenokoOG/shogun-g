@@ -1,4 +1,4 @@
-// Tooltip.js
+
 import React from "react";
 import "./Pixeltool.css";
 

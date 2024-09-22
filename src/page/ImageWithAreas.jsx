@@ -4,11 +4,14 @@ import AreaModal from "../components/AreaModal/AreaModal";
 import { useWikipediaData } from "../hooks/useWikipediaData"; // Keep this hook for regular topics
 import { useSwordData } from "../hooks/useSwordData"; // New hook for sword topics
 import "./ImageWithAreas.css";
+import Pixeltool from "../utils/Pixeltool";
 
 const ImageWithAreas = () => {
     const [modalData, setModalData] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
+    // State to store the Pixeltool position
+    const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 });
 
     // Use `useWikipediaData` for non-sword topics
     const { data: areaData } = useWikipediaData(modalData !== "swordsBelt" ? modalData : null);
@@ -23,8 +26,12 @@ const ImageWithAreas = () => {
 
     const closeModal = () => setModalOpen(false);
 
+    const handleMouseMove = (e) => {
+        setToolPosition({ x: e.pageX, y: e.pageY });
+    };
+
     return (
-        <div className="image-with-areas">
+        <div className="image-with-areas" onMouseMove={handleMouseMove}>
             <ImageMap onAreaClick={openModal} imageSize={imageSize} setImageSize={setImageSize} />
             {modalOpen && (
                 <AreaModal
@@ -33,6 +40,10 @@ const ImageWithAreas = () => {
                     areaData={areaData}
                     onClose={closeModal}
                 />
+            )}
+            {/* Conditionally render Tooltip for development */}
+            {process.env.NODE_ENV === "development" && (
+                <Pixeltool x={toolPosition.x} y={toolPosition.y} />
             )}
         </div>
     );
