@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';  // Importing necessary icons
+import './Modal.css';
 
-const LoadingSpinner = () => (
-    <div className="flex flex-col items-center justify-center text-center p-5">
-        <div className="border-4 border-t-blue-500 border-gray-200 rounded-full w-10 h-10 animate-spin"></div>
-        <p className="mt-3">Loading data, please wait...</p>
-    </div>
-);
-
-const Modal = ({ title, content, onClose, isLoading }) => {
+const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
     const [isClosing, setIsClosing] = useState(false);
 
-    // Handle closing with fade-out animation
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
             onClose();
-        }, 300); // Matches the fade-out duration
+        }, 300);
     };
 
-    // Close on "Escape" key press
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.key === "Escape") {
@@ -36,46 +28,50 @@ const Modal = ({ title, content, onClose, isLoading }) => {
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-200 ease-out ${isClosing ? "opacity-0" : "opacity-100"}`}
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 transition-opacity duration-300 ease-out ${isClosing ? "opacity-0" : "opacity-100"}`}
             onClick={handleClose}
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
         >
             <div
-                className="bg-white p-6 rounded-lg max-w-lg max-h-[80vh] overflow-y-auto shadow-lg relative transform transition-transform duration-200 scale-100"
+                className="bg-white p-8 rounded-xl max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl relative transform transition-transform duration-300 scale-100 font-poppins"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
-                    className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-red-500 focus:outline-none"
+                    className="absolute top-3 right-3 text-2xl text-gray-400 hover:text-red-500 focus:outline-none"
                     aria-label="Close modal"
                     onClick={handleClose}
                 >
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
                 {isLoading ? (
-                    <LoadingSpinner />
+                    <div className="text-center p-5 text-gray-600 font-medium">Loading...</div>
                 ) : (
                     <>
-                        <h2 id="modal-title" className="text-2xl font-semibold text-gray-800 mb-4">
+                        <h2 id="modal-title" className="text-3xl font-semibold text-gray-800 mb-6 leading-tight font-poppins">
                             {title}
                         </h2>
-                        <p className="text-base text-gray-600 mb-5">
+                        <p className="text-base text-gray-700 mb-6 leading-relaxed font-poppins">
                             {content}
                         </p>
                         <div className="flex justify-between mt-6">
                             <button
-                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400"
+                                className="flex items-center px-5 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition-colors duration-200 font-poppins"
                                 onClick={handleClose}
                             >
+                                <FontAwesomeIcon icon={faTimes} className="mr-2" />  {/* Added icon with spacing */}
                                 Close
                             </button>
-                            <button
-                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                                onClick={() => alert('More Info!')}
-                            >
-                                Learn More
-                            </button>
+                            {wikipediaUrl && (
+                                <button
+                                    className="flex items-center px-5 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-poppins"
+                                    onClick={() => window.open(wikipediaUrl, '_blank')}
+                                >
+                                    <span className="mr-2">Learn More</span>  {/* Added text with spacing */}
+                                    <FontAwesomeIcon icon={faExternalLinkAlt} />  {/* External link icon */}
+                                </button>
+                            )}
                         </div>
                     </>
                 )}

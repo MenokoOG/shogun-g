@@ -7,7 +7,7 @@ const swordTopics = [
   "Wakizashi",
   "Nodachi",
   "Kodachi",
-  "Tanto",
+  "Tantō ",
   "Uchigatana",
   "Ninjato",
   "Bokken",
