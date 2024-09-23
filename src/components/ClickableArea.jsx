@@ -1,7 +1,9 @@
 import React from "react";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // Import default CSS for Tippy.js tooltips
 
 const ClickableArea = ({ area, imageSize, onClick }) => {
-    const { x1, y1, x2, y2 } = area;
+    const { x1, y1, x2, y2, label } = area;
 
     const areaStyle = {
         left: `${x1 * imageSize.width}px`,
@@ -11,13 +13,13 @@ const ClickableArea = ({ area, imageSize, onClick }) => {
     };
 
     return (
-        <div
-            className="absolute border-2 border-transparent
-             
-             cursor-pointer hover:border-gray-100/90"
-            style={areaStyle}
-            onClick={onClick}
-        ></div>
+        <Tippy content={label} placement="top" arrow={true}>
+            <div
+                className="absolute border-2 border-transparent cursor-pointer hover:border-gray-100/90"
+                style={areaStyle}
+                onClick={onClick}
+            ></div>
+        </Tippy>
     );
 };
 
