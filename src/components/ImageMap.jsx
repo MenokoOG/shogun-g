@@ -77,19 +77,23 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
         const updateImageSize = () => {
             const image = document.getElementById("main-image");
             if (image) {
+                const { width, height } = image.getBoundingClientRect();
                 setImageSize({
-                    width: image.clientWidth,
-                    height: image.clientHeight,
+                    width,
+                    height,
                 });
             }
         };
 
-        updateImageSize();
+        window.addEventListener("load", updateImageSize);  // Ensure size is calculated on load
         window.addEventListener("resize", updateImageSize);
+
         return () => {
+            window.removeEventListener("load", updateImageSize);
             window.removeEventListener("resize", updateImageSize);
         };
     }, [setImageSize]);
+
 
     return (
         <div className="relative mx-auto max-w-full">

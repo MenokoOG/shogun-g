@@ -52,9 +52,9 @@ const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
                         <h2 id="modal-title" className="text-3xl font-semibold text-gray-800 mb-6 leading-tight font-poppins">
                             {title}
                         </h2>
-                        <p className="text-base text-gray-700 mb-6 leading-relaxed font-poppins">
-                            {content}
-                        </p>
+                        <div className="text-base text-gray-700 mb-6 leading-relaxed font-poppins">
+                            {content} {/* Render the content directly without wrapping it in a <p> tag */}
+                        </div>
                         <div className="flex justify-between mt-6">
                             <button
                                 className="flex items-center px-5 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition-colors duration-200 font-poppins"
