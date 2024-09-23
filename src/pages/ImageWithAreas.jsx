@@ -34,6 +34,7 @@ const ImageWithAreas = () => {
                     swordData={swordData}
                     areaData={areaData}
                     onClose={closeModal}
+                    wikipediaUrl={areaData ? `https://en.wikipedia.org/wiki/${modalData}` : null}
                 />
             )}
             {/* for dev */}

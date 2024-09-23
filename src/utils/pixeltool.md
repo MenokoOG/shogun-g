@@ -12,3 +12,7 @@ const handleMouseMove = (e) => {
 
 
 <div className="image-container" onMouseMove={handleMouseMove}>
+
+
+
+{/* border-red-500/50 bg-red-500/10 */}
