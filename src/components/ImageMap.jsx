@@ -72,7 +72,7 @@ const clickableAreas = {
 
 };
 
-const ImageMap = ({ onAreaClick, imageSize, setImageSize, modalOpen }) => {
+const ImageMap = ({ onAreaClick, imageSize, setImageSize, showClickableAreas, modalOpen }) => {
     useEffect(() => {
         const updateImageSize = () => {
             const image = document.getElementById("main-image");
@@ -105,6 +105,8 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize, modalOpen }) => {
                     area={clickableAreas[areaKey]}
                     imageSize={imageSize}
                     onClick={() => onAreaClick(areaKey)}
+                    showBorders={showClickableAreas} // Show borders based on the toggle
+                    showTooltip={showClickableAreas} // Show tooltips based on the toggle
                     isModalOpen={modalOpen} // Pass the modalOpen prop
                 />
             ))}
