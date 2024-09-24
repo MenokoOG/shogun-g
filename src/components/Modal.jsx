@@ -11,11 +11,11 @@ const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
 
     // Set initial position in the center of the screen
     useEffect(() => {
-        const modalWidth = 600; // Set a fixed width or calculate dynamically
-        const modalHeight = 400; // Set a fixed height or calculate dynamically
+        const modalWidth = 400; // Adjust for mobile
+        const modalHeight = 300; // Adjust for mobile
         setPosition({
-            top: `${window.innerHeight / 2 - modalHeight / 2}px`,
-            left: `${window.innerWidth / 2 - modalWidth / 2}px`,
+            top: `${Math.max(0, (window.innerHeight - modalHeight) / 2)}px`,
+            left: `${Math.max(0, (window.innerWidth - modalWidth) / 2)}px`,
         });
     }, []);
 
@@ -70,10 +70,10 @@ const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
             aria-labelledby="modal-title"
         >
             <div
-                className="bg-white p-6 rounded-xl max-w-lg w-full max-h-[80vh] overflow-y-auto shadow-2xl relative transform transition-transform duration-300 scale-100 font-poppins"
-                style={{ top: position.top, left: position.left, position: 'absolute' }} // Updated position styles
-                onMouseDown={handleMouseDown} // Enable dragging
-                onClick={(e) => e.stopPropagation()} // Prevent closing modal on click
+                className="bg-white p-4 rounded-xl w-full max-w-xs sm:max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl relative transform transition-transform duration-300 scale-100 font-poppins"
+                style={{ top: position.top, left: position.left, position: 'absolute' }}
+                onMouseDown={handleMouseDown}
+                onClick={(e) => e.stopPropagation()}
             >
                 <button
                     className="absolute top-3 right-3 text-2xl text-gray-400 hover:text-red-500 focus:outline-none"
@@ -86,15 +86,15 @@ const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
                     <div className="text-center p-5 text-gray-600 font-medium">Loading...</div>
                 ) : (
                     <>
-                        <h2 id="modal-title" className="text-xl md:text-3xl font-semibold text-gray-800 mb-6 leading-tight font-poppins">
+                        <h2 id="modal-title" className="text-xl md:text-2xl font-semibold text-gray-800 mb-4 leading-tight font-poppins">
                             {title}
                         </h2>
-                        <div className="text-base text-gray-700 mb-6 leading-relaxed font-poppins">
+                        <div className="text-base text-gray-700 mb-4 leading-relaxed font-poppins">
                             {content}
                         </div>
-                        <div className="flex flex-col sm:flex-row justify-between mt-6">
+                        <div className="flex flex-col sm:flex-row justify-between mt-4">
                             <button
-                                className="flex items-center px-5 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition-colors duration-200 font-poppins"
+                                className="flex items-center px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition-colors duration-200 font-poppins"
                                 onClick={handleClose}
                             >
                                 <FontAwesomeIcon icon={faTimes} className="mr-2" />
@@ -102,7 +102,7 @@ const Modal = ({ title, content, onClose, isLoading, wikipediaUrl }) => {
                             </button>
                             {wikipediaUrl && (
                                 <button
-                                    className="flex items-center px-5 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-poppins mt-4 sm:mt-0"
+                                    className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-poppins mt-2 sm:mt-0"
                                     onClick={() => window.open(wikipediaUrl, '_blank')}
                                 >
                                     <span className="mr-2">Learn More</span>

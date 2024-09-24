@@ -52,9 +52,3 @@
     padding: 16px; /* Adjust modal padding for mobile */
   }
 }
-
-/* Ensure the PageFrame and other components are responsive */
-.page-frame {
-  padding: 1rem; /* Adjust padding */
-  min-height: 100vh; /* Ensure it takes full height */
-}
