@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "./Modal";
-import './Tooltip.css';  // Import custom tooltip styles
+import './Tooltip.css';
 
 const AreaModal = ({ modalData, swordData, areaData, onClose }) => {
     return (
@@ -12,7 +12,6 @@ const AreaModal = ({ modalData, swordData, areaData, onClose }) => {
                         ? swordData?.map((sword, index) => (
                             <div key={`${sword.title}-${index}`}>
                                 <h3 className="tooltip">
-                                    {/* Custom Tooltip for the Wikipedia page link */}
                                     <a
                                         href={`https://en.wikipedia.org/wiki/${sword.title}`}
                                         target="_blank"
@@ -23,7 +22,7 @@ const AreaModal = ({ modalData, swordData, areaData, onClose }) => {
                                     </a>
                                     <span className="tooltiptext">{`https://en.wikipedia.org/wiki/${sword.title}`}</span>
                                 </h3>
-                                <div>{sword.extract}</div> {/* Changed from <p> to <div> to avoid nesting issues */}
+                                <div>{sword.extract}</div>
                             </div>
                         ))
                         : <div>{areaData?.extract}</div>
