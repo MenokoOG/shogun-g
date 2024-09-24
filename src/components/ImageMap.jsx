@@ -72,20 +72,17 @@ const clickableAreas = {
 
 };
 
-const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
+const ImageMap = ({ onAreaClick, imageSize, setImageSize, modalOpen }) => {
     useEffect(() => {
         const updateImageSize = () => {
             const image = document.getElementById("main-image");
             if (image) {
                 const { width, height } = image.getBoundingClientRect();
-                setImageSize({
-                    width,
-                    height,
-                });
+                setImageSize({ width, height });
             }
         };
 
-        window.addEventListener("load", updateImageSize);  // Ensure size is calculated on load
+        window.addEventListener("load", updateImageSize);
         window.addEventListener("resize", updateImageSize);
 
         return () => {
@@ -93,7 +90,6 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
             window.removeEventListener("resize", updateImageSize);
         };
     }, [setImageSize]);
-
 
     return (
         <div className="relative mx-auto max-w-full">
@@ -109,6 +105,7 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize }) => {
                     area={clickableAreas[areaKey]}
                     imageSize={imageSize}
                     onClick={() => onAreaClick(areaKey)}
+                    isModalOpen={modalOpen} // Pass the modalOpen prop
                 />
             ))}
         </div>

@@ -8,20 +8,23 @@ export const useWikipediaData = (topic) => {
   useEffect(() => {
     if (!topic) return;
 
-    const fetchWikipediaData = async (topic) => {
+    const fetchWikipediaData = async () => {
       const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${topic}`;
       try {
         setLoading(true);
         const response = await fetch(url);
-        const data = await response.json();
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
         setData({
-          title: data.title,
-          extract: data.extract,
+          title: result.title,
+          extract: result.extract,
         });
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Failed to load information.");
+      } finally {
         setLoading(false);
       }
     };

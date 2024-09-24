@@ -27,7 +27,7 @@ const ImageWithAreas = () => {
 
     return (
         <div className="relative" /*onMouseMove={handleMouseMove}*/>
-            <ImageMap onAreaClick={openModal} imageSize={imageSize} setImageSize={setImageSize} />
+            <ImageMap onAreaClick={openModal} imageSize={imageSize} setImageSize={setImageSize} modalOpen={modalOpen} />
             {modalOpen && (
                 <AreaModal
                     modalData={modalData}

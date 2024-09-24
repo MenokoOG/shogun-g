@@ -1,8 +1,8 @@
 import React from "react";
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // Import default CSS for Tippy.js tooltips
+import 'tippy.js/dist/tippy.css';
 
-const ClickableArea = ({ area, imageSize, onClick }) => {
+const ClickableArea = ({ area, imageSize, onClick, isModalOpen }) => {
     const { x1, y1, x2, y2, label } = area;
 
     const areaStyle = {
@@ -13,13 +13,17 @@ const ClickableArea = ({ area, imageSize, onClick }) => {
     };
 
     return (
-        <Tippy content={label} placement="top" arrow={true}>
-            <div
-                className="absolute border-2 border-transparent cursor-pointer hover:border-gray-100/90"
-                style={areaStyle}
-                onClick={onClick}
-            ></div>
-        </Tippy>
+        <div
+            className="absolute border-2 border-transparent cursor-pointer hover:border-gray-100/90"
+            style={areaStyle}
+            onClick={onClick}
+        >
+            {!isModalOpen && ( // Only show tooltip if the modal is closed
+                <Tippy content={label} placement="top" arrow={true}>
+                    <span className="block w-full h-full"></span>
+                </Tippy>
+            )}
+        </div>
     );
 };
 
