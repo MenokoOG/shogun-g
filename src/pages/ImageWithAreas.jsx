@@ -5,7 +5,7 @@ import { useWikipediaData } from "../hooks/useWikipediaData"; // hook for regula
 import { useSwordData } from "../hooks/useSwordData"; // hook for sword topics
 // import Pixeltool from "../utils/Pixeltool"; // dev component for displaying mouse coordinates
 
-const ImageWithAreas = ({ showClickableAreas }) => {
+const ImageWithAreas = ({ imageData, showClickableAreas }) => {
     const [modalData, setModalData] = useState(null);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
     // const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 }); // for dev
@@ -26,6 +26,7 @@ const ImageWithAreas = ({ showClickableAreas }) => {
     return (
         <div className="relative" /* onMouseMove={handleMouseMove} */>
             <ImageMap
+                image={imageData} // Pass image data dynamically
                 onAreaClick={openModal}
                 imageSize={imageSize}
                 setImageSize={setImageSize}
