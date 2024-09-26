@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchWikipediaData } from "../api/apiClient";
 
 export const useWikipediaData = (topic) => {
   const [data, setData] = useState(null);
@@ -8,28 +9,19 @@ export const useWikipediaData = (topic) => {
   useEffect(() => {
     if (!topic) return;
 
-    const fetchWikipediaData = async () => {
-      const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${topic}`;
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setData({
-          title: result.title,
-          extract: result.extract,
-        });
+        const result = await fetchWikipediaData(topic);
+        setData({ title: result.title, extract: result.extract });
       } catch (error) {
-        console.error("Error fetching data:", error);
         setError("Failed to load information.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchWikipediaData(topic);
+    fetchData();
   }, [topic]);
 
   return { data, loading, error };
