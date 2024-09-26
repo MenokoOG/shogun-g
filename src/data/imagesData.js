@@ -1,4 +1,3 @@
-// src/data/images.js
 import shogunGeisha from "../assets/images/a Japanese shogun-geisha- red cherry blossom.webp";
 
 const originalImageDimensions = {
@@ -8,7 +7,7 @@ const originalImageDimensions = {
 
 export const imagesData = {
   shogunGeisha: {
-    src: shogunGeisha, // Use the imported image directly
+    src: shogunGeisha,
     alt: "Shogun and Geisha Image",
     clickableAreas: {
       shogun: {
@@ -37,35 +36,35 @@ export const imagesData = {
         y1: 600 / originalImageDimensions.height,
         x2: 780 / originalImageDimensions.width,
         y2: 800 / originalImageDimensions.height,
-        label: "swordsBelt",
+        label: "Swords Belt",
       },
       kabuto: {
         x1: 626 / originalImageDimensions.width,
         y1: 150 / originalImageDimensions.height,
         x2: 940 / originalImageDimensions.width,
         y2: 340 / originalImageDimensions.height,
-        label: "kabuto",
+        label: "Kabuto",
       },
       kanzashi: {
         x1: 1005 / originalImageDimensions.width,
         y1: 250 / originalImageDimensions.height,
         x2: 1200 / originalImageDimensions.width,
         y2: 400 / originalImageDimensions.height,
-        label: "kanzashi",
+        label: "Kanzashi",
       },
       oshiroi: {
         x1: 1000 / originalImageDimensions.width,
         y1: 400 / originalImageDimensions.height,
         x2: 1200 / originalImageDimensions.width,
         y2: 600 / originalImageDimensions.height,
-        label: "oshiroi",
+        label: "Oshiroi",
       },
       kimono: {
         x1: 1000 / originalImageDimensions.width,
         y1: 750 / originalImageDimensions.height,
         x2: 1200 / originalImageDimensions.width,
         y2: 830 / originalImageDimensions.height,
-        label: "kimono",
+        label: "Kimono",
       },
     },
   },
