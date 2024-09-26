@@ -7,6 +7,7 @@ const originalImageDimensions = {
     height: 1024,
 };
 
+// Define clickable areas relative to original image dimensions
 const clickableAreas = {
     shogun: {
         x1: 700 / originalImageDimensions.width,
@@ -43,7 +44,6 @@ const clickableAreas = {
         y2: 340 / originalImageDimensions.height,
         label: "kabuto",
     },
-
     kanzashi: {
         x1: 1005 / originalImageDimensions.width,
         y1: 250 / originalImageDimensions.height,
@@ -51,7 +51,6 @@ const clickableAreas = {
         y2: 400 / originalImageDimensions.height,
         label: "kanzashi",
     },
-
     oshiroi: {
         x1: 1000 / originalImageDimensions.width,
         y1: 400 / originalImageDimensions.height,
@@ -59,7 +58,6 @@ const clickableAreas = {
         y2: 600 / originalImageDimensions.height,
         label: "oshiroi",
     },
-
     kimono: {
         x1: 1000 / originalImageDimensions.width,
         y1: 750 / originalImageDimensions.height,
@@ -67,9 +65,6 @@ const clickableAreas = {
         y2: 830 / originalImageDimensions.height,
         label: "kimono",
     },
-
-
-
 };
 
 const ImageMap = ({ onAreaClick, imageSize, setImageSize, showClickableAreas, modalOpen }) => {
@@ -82,13 +77,11 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize, showClickableAreas, mo
             }
         };
 
-        window.addEventListener("load", updateImageSize);
+        // Run on mount and update when window is resized
+        updateImageSize();
         window.addEventListener("resize", updateImageSize);
 
-        return () => {
-            window.removeEventListener("load", updateImageSize);
-            window.removeEventListener("resize", updateImageSize);
-        };
+        return () => window.removeEventListener("resize", updateImageSize);
     }, [setImageSize]);
 
     return (
@@ -105,9 +98,9 @@ const ImageMap = ({ onAreaClick, imageSize, setImageSize, showClickableAreas, mo
                     area={clickableAreas[areaKey]}
                     imageSize={imageSize}
                     onClick={() => onAreaClick(areaKey)}
-                    showBorders={showClickableAreas} // Show borders based on the toggle
-                    showTooltip={showClickableAreas} // Show tooltips based on the toggle
-                    isModalOpen={modalOpen} // Pass the modalOpen prop
+                    showBorders={showClickableAreas}
+                    showTooltip={showClickableAreas}
+                    isModalOpen={modalOpen}
                 />
             ))}
         </div>

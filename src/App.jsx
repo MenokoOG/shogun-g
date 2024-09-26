@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Banner from './components/Banner';
 import Footer from './components/Footer';
 import PageFrame from './components/PageFrame';
 import ImageWithAreas from './pages/ImageWithAreas';
 
 const App = () => {
-  const [showClickableAreas, setShowClickableAreas] = useState(false); // State to manage clickable areas visibility
+  const [areClickableAreasVisible, setAreClickableAreasVisible] = useState(false); // State to manage clickable areas visibility
 
-  const toggleClickableAreas = () => {
-    setShowClickableAreas(prev => !prev); // Toggle the visibility of clickable areas
-  };
+  // Toggle the visibility of clickable areas
+  const handleToggleClickableAreas = useCallback(() => {
+    setAreClickableAreasVisible(prevVisible => !prevVisible);
+  }, []);
 
   return (
     <PageFrame>
-      <Banner onToggleClickableAreas={toggleClickableAreas} />
+      <Banner onToggleClickableAreas={handleToggleClickableAreas} />
       <main className="flex-grow">
-        <ImageWithAreas showClickableAreas={showClickableAreas} />
+        <ImageWithAreas showClickableAreas={areClickableAreasVisible} />
       </main>
       <Footer />
     </PageFrame>

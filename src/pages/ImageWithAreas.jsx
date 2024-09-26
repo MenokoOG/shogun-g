@@ -7,34 +7,32 @@ import { useSwordData } from "../hooks/useSwordData"; // hook for sword topics
 
 const ImageWithAreas = ({ showClickableAreas }) => {
     const [modalData, setModalData] = useState(null);
-    const [modalOpen, setModalOpen] = useState(false);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
     // const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 }); // for dev
 
+    // Use correct data hook based on modal content
     const { data: areaData } = useWikipediaData(modalData !== "swordsBelt" ? modalData : null);
     const { swordData } = useSwordData(modalData === "swordsBelt");
 
-    const openModal = (areaKey) => {
-        setModalData(areaKey);
-        setModalOpen(true);
-    };
+    // Modal handlers
+    const openModal = (areaKey) => setModalData(areaKey);
+    const closeModal = () => setModalData(null);
 
-    const closeModal = () => setModalOpen(false);
     // for dev
     // const handleMouseMove = (e) => {
     //     setToolPosition({ x: e.pageX, y: e.pageY });
     // };
 
     return (
-        <div className="relative" /*onMouseMove={handleMouseMove}*/>
+        <div className="relative" /* onMouseMove={handleMouseMove} */>
             <ImageMap
                 onAreaClick={openModal}
                 imageSize={imageSize}
                 setImageSize={setImageSize}
                 showClickableAreas={showClickableAreas} // Pass the state to ImageMap
-                modalOpen={modalOpen}
             />
-            {modalOpen && (
+
+            {modalData && (
                 <AreaModal
                     modalData={modalData}
                     swordData={swordData}
@@ -43,9 +41,10 @@ const ImageWithAreas = ({ showClickableAreas }) => {
                     wikipediaUrl={areaData ? `https://en.wikipedia.org/wiki/${modalData}` : null}
                 />
             )}
-            {/* for dev */}
+
+            {/* Dev tool for displaying mouse coordinates */}
             {/* {process.env.NODE_ENV === "development" && (
-                <Pixeltool x={toolPosition.x} y={toolPosition.y} />
+                <Pixeltool x={toolPosition?.x} y={toolPosition?.y} />
             )} */}
         </div>
     );

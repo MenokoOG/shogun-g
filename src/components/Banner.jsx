@@ -13,6 +13,7 @@ const Banner = ({ onToggleClickableAreas }) => {
                 <button
                     onClick={onToggleClickableAreas}
                     className="mt-4 bg-yellow-500 text-gray-800 px-4 py-2 rounded hover:bg-yellow-400 transition"
+                    aria-label="Toggle clickable areas"
                 >
                     Toggle Clickable Areas
                 </button>

@@ -6,3 +6,6 @@
     padding: 1rem; /* Adjust padding for mobile */
   }
 }
+.modal {
+  will-change: transform; /* Hint to the browser that transform will change */
+}
