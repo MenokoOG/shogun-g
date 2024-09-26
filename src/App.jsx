@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Banner from './components/Banner';
 import Footer from './components/Footer';
 import PageFrame from './components/PageFrame';
 import ImageWithAreas from './pages/ImageWithAreas';
+import { imagesData } from './data/images'; // Import the images data
 
 const App = () => {
-  const [showClickableAreas, setShowClickableAreas] = useState(false); // State to manage clickable areas visibility
+  const [areClickableAreasVisible, setAreClickableAreasVisible] = useState(false);
 
-  const toggleClickableAreas = () => {
-    setShowClickableAreas(prev => !prev); // Toggle the visibility of clickable areas
-  };
+  const handleToggleClickableAreas = useCallback(() => {
+    setAreClickableAreasVisible((prev) => !prev);
+  }, []);
 
   return (
     <PageFrame>
-      <Banner onToggleClickableAreas={toggleClickableAreas} />
+      <Banner onToggleClickableAreas={handleToggleClickableAreas} />
       <main className="flex-grow">
-        <ImageWithAreas showClickableAreas={showClickableAreas} />
+        {/* Pass different image data here */}
+        <ImageWithAreas imageData={imagesData.shogunGeisha} showClickableAreas={areClickableAreasVisible} />
       </main>
       <Footer />
     </PageFrame>
