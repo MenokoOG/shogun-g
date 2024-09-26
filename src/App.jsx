@@ -3,7 +3,8 @@ import Banner from './components/Banner';
 import Footer from './components/Footer';
 import PageFrame from './components/PageFrame';
 import ImageWithAreas from './pages/ImageWithAreas';
-import { imagesData } from './data/images'; // Import the images data
+import { imagesData } from './data/imagesData'; // Import image data
+import { layoutData } from './data/layoutData'; // Import layout data
 
 const App = () => {
   const [areClickableAreasVisible, setAreClickableAreasVisible] = useState(false);
@@ -13,13 +14,12 @@ const App = () => {
   }, []);
 
   return (
-    <PageFrame>
-      <Banner onToggleClickableAreas={handleToggleClickableAreas} />
+    <PageFrame pageFrameData={layoutData.shogun.pageFrame}>
+      <Banner onToggleClickableAreas={handleToggleClickableAreas} bannerData={layoutData.shogun.banner} />
       <main className="flex-grow">
-        {/* Pass different image data here */}
         <ImageWithAreas imageData={imagesData.shogunGeisha} showClickableAreas={areClickableAreasVisible} />
       </main>
-      <Footer />
+      <Footer footerData={layoutData.shogun.footer} />
     </PageFrame>
   );
 };

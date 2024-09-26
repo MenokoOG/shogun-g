@@ -1,9 +1,9 @@
 import React from "react";
 
-const PageFrame = ({ children }) => {
+const PageFrame = ({ children, pageFrameData }) => {
     return (
-        <main className="bg-black relative border-8 border-yellow-600 shadow-xl p-4 min-h-screen">
-            <div className="border-double border-8 border-red-800 p-4 bg-black shadow-inner">
+        <main className={`${pageFrameData.bgColor} relative ${pageFrameData.borderColors} shadow-xl p-4 min-h-screen`}>
+            <div className={`${pageFrameData.contentBorderColors} p-4 shadow-inner`}>
                 {children}
             </div>
         </main>

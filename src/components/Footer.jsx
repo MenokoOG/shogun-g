@@ -1,16 +1,16 @@
 import React from "react";
 
-const Footer = () => {
-    const currentYear = new Date().getFullYear(); // Dynamic year
+const Footer = ({ footerData }) => {
+    const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="relative bg-red-800 text-gray-200 p-6 mt-8 border-t-4 border-b-8 border-yellow-600">
+        <footer className={`relative ${footerData.bgColor} ${footerData.textColor} p-6 mt-8 ${footerData.borderColors.top} ${footerData.borderColors.bottom}`}>
             <div className="text-center">
                 <p className="text-sm md:text-base">
-                    &copy; {currentYear} Shogun-G Project | L. Jefferson | All rights reserved
+                    {footerData.footerText.main.replace("2023", currentYear)}
                 </p>
                 <p className="text-xs italic text-gray-400">
-                    Crafted with passion and respect for the art of the samurai.
+                    {footerData.footerText.secondary}
                 </p>
             </div>
         </footer>
