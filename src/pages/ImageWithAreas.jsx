@@ -3,12 +3,13 @@ import ImageMap from "../components/ImageMap";
 import AreaModal from "../components/AreaModal";
 import { useWikipediaData } from "../hooks/useWikipediaData"; // hook for regular topics
 import { useSwordData } from "../hooks/useSwordData"; // hook for sword topics
-// import Pixeltool from "../utils/Pixeltool"; // dev component for displaying mouse coordinates
+
+
 
 const ImageWithAreas = ({ imageData, showClickableAreas }) => {
     const [modalData, setModalData] = useState(null);
     const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-    // const [toolPosition, setToolPosition] = useState({ x: 0, y: 0 }); // for dev
+
 
     // Use correct data hook based on modal content
     const { data: areaData } = useWikipediaData(modalData !== "swordsBelt" ? modalData : null);
@@ -18,13 +19,10 @@ const ImageWithAreas = ({ imageData, showClickableAreas }) => {
     const openModal = (areaKey) => setModalData(areaKey);
     const closeModal = () => setModalData(null);
 
-    // for dev
-    // const handleMouseMove = (e) => {
-    //     setToolPosition({ x: e.pageX, y: e.pageY });
-    // };
+
 
     return (
-        <div className="relative" /* onMouseMove={handleMouseMove} */>
+        <div className="relative">
             <ImageMap
                 image={imageData} // Pass image data dynamically
                 onAreaClick={openModal}
@@ -43,10 +41,7 @@ const ImageWithAreas = ({ imageData, showClickableAreas }) => {
                 />
             )}
 
-            {/* Dev tool for displaying mouse coordinates */}
-            {/* {process.env.NODE_ENV === "development" && (
-                <Pixeltool x={toolPosition?.x} y={toolPosition?.y} />
-            )} */}
+
         </div>
     );
 };

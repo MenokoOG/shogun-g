@@ -5,6 +5,7 @@ import PageFrame from './components/PageFrame';
 import ImageWithAreas from './pages/ImageWithAreas';
 import { imagesData } from './data/imagesData'; // Import image data
 import { layoutData } from './data/layoutData'; // Import layout data
+// import ImageCoordinateTracker from './utils/ImageCoordinateTracker';
 
 const App = () => {
   const [areClickableAreasVisible, setAreClickableAreasVisible] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
       </main>
       <Footer footerData={layoutData.shogun.footer} />
     </PageFrame>
+    // <ImageCoordinateTracker />
   );
 };
 

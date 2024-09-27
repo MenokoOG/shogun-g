@@ -1,8 +1,8 @@
 import shogunGeisha from "../assets/images/a Japanese shogun-geisha- red cherry blossom.webp";
 
 const originalImageDimensions = {
-  width: 1792,
-  height: 1024,
+  width: 1008,
+  height: 576,
 };
 
 export const imagesData = {
